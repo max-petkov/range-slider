@@ -1,3 +1,10 @@
+/* TODO */
+/* 
+  1. Change color on grid lines based on fill color
+  2. Remove black lines which are around first and last grid line
+  3. Safari Check on mix-blend-mode: color (.grid-line); 
+*/
+
 /* Price Range Slider */
 .price-calculator__wrapper {
   --bg-default-range: #222222;
@@ -6,13 +13,38 @@
   --border-color-thumb: var(--bg-fill-range);
   --height-input-range: 4px;
   --range-value: 0px;
+  --display-left-edge: none;
+  --display-right-edge: inline-block;
 
   position: relative;
   height: 24px;
 }
 
+.price-calculator__wrapper:before {
+  content: "";
+  display: var(--display-left-edge);
+  background-color: #fff;
+  width: 16px;
+  height: 24px;
+  position: absolute;
+  top: 0;
+  left: -4px;
+}
+
+.price-calculator__wrapper:after {
+  content: "";
+  display: var(--display-right-edge);
+  background-color: #fff;
+  width: 16px;
+  height: 24px;
+  position: absolute;
+  top: 0;
+  right: -6px;
+}
+
 /* Range */
 .price-range {
+  cursor: pointer;
   -webkit-appearance: none;
   width: 100%;
   height: var(--height-input-range);
@@ -60,6 +92,10 @@
   cursor: pointer;
 }
 
+/* Price Thumb */
+
+
+/* Price Value */
 .price-value {
   position: absolute;
   top: calc(100% + 16px);
@@ -75,35 +111,7 @@
   left: 89%;
 }
 
-.price-separator {
-  display: inline-block;
-  position: absolute;
-  top: 2px;
-  left: -1px;
-  width: 2px;
-  height: 20px;
-  background-color: var(--bg-default-range);
-}
-
-.price-separator--middle {
-  left: calc(33% - 24px);
-  left: var(--range-separator-middle);
-}
-@media only screen and (max-width: 768.9px) {
-  .price-separator--middle {
-    left: calc(33% - 16px);
-  }
-}
-@media only screen and (max-width: 425.9px) {
-  .price-separator--middle {
-    left: 33%;
-  }
-}
-
-.price-separator--last {
-  left: calc(100% - 1px);
-}
-
+/* Tooltip */
 .price-tooltip {
   --left-position-tooltip: -58px; /* Change Starting Value when add in Webflow */
 
@@ -117,8 +125,7 @@
   box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0.6s ease,
-    opacity 0.6s ease;
+  transition: visibility 0.6s ease, opacity 0.6s ease;
 }
 
 .price-calculator__wrapper:hover .price-tooltip {
@@ -126,7 +133,6 @@
   opacity: 1;
 }
 
-/* Tooltip */
 .price-tooltip__pointer {
   position: absolute;
   top: 100%;
@@ -146,4 +152,32 @@
   padding: 8px;
   background-color: #fff;
   z-index: 1;
+}
+/* Grid Lines */
+.grid-lines {
+  display: block;
+  pointer-events: none;
+}
+
+.grid-line {
+  display: inherit;
+  position: absolute;
+  top: 2px;
+  width: 2px;
+  height: 20px;
+  background-color: var(--bg-default-range);
+  mix-blend-mode: color;
+  pointer-events: none;
+}
+
+.grid-line--first {
+  left: var(--position-line-first);
+}
+
+.grid-line--middle {
+  left: var(--position-line-middle);
+}
+
+.grid-line--last {
+  left: var(--position-line-last);
 }
