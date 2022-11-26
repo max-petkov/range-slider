@@ -92,7 +92,23 @@
   cursor: pointer;
 }
 
-/* Price Thumb */
+/* Plan Name */
+.price-plan {
+  --left-position-pro: 0;
+  --right-position-business: 0;
+
+  position: absolute;
+  top: 24px;
+  pointer-events: none;
+}
+
+.price-plan--pro {
+  left: var(--left-position-pro);
+}
+
+.price-plan--business {
+  right: var(--right-position-business);
+}
 
 
 /* Price Value */

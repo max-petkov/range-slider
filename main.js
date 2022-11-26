@@ -50,9 +50,6 @@ function priceCalculator() {
 
       if (val > max / 2) left -= 2;
       else left += 2;
-
-      console.log(left);
-
       return left.toFixed(2) - tooltipWidth / 2;
     }
   }
@@ -62,6 +59,8 @@ function priceCalculator() {
     const middleLine = document.querySelector(".grid-line--middle");
     const lastLine = document.querySelector(".grid-line--last");
     const wrapperWidth = wrapper.getBoundingClientRect().width.toFixed(2);
+    const businessPlan = document.querySelector(".price-plan--business");
+    const proPlan = document.querySelector(".price-plan--pro");
     const thumbPosition = (value) => {
       const thumbSize = 24;
       return (
@@ -82,6 +81,25 @@ function priceCalculator() {
     lastLine.style.setProperty(
       "--position-line-last",
       thumbPosition(range.max) + "px"
+    );
+
+    const getPosition = (el) => {
+      const element = el.getBoundingClientRect();
+
+      return {
+        top: element.top + window.scrollY,
+        left: element.left + window.scrollX,
+      };
+    };
+    const positionProPlan =
+      (getPosition(middleLine).left - getPosition(firstLine).left) / 2;
+    const positionBusPlan =
+      (getPosition(lastLine).left - getPosition(middleLine).left - 32) / 2;
+
+    proPlan.style.setProperty("--left-position-pro", positionProPlan + "px");
+    businessPlan.style.setProperty(
+      "--right-position-business",
+      positionBusPlan + "px"
     );
   }
 
