@@ -1,0 +1,149 @@
+/* Price Range Slider */
+.price-calculator__wrapper {
+  --bg-default-range: #222222;
+  --bg-fill-range: #3d4fe0;
+  --bg-thumb: #ffffff;
+  --border-color-thumb: var(--bg-fill-range);
+  --height-input-range: 4px;
+  --range-value: 0px;
+
+  position: relative;
+  height: 24px;
+}
+
+/* Range */
+.price-range {
+  -webkit-appearance: none;
+  width: 100%;
+  height: var(--height-input-range);
+  background: var(--bg-default-range);
+  outline: none;
+}
+
+.price-range::-moz-range-track {
+  background: var(--bg-default-range);
+  height: var(--height-input-range);
+  border-radius: 46.3872px;
+}
+
+.price-range::-moz-range-progress {
+  background-color: var(--bg-fill-range);
+  height: var(--height-input-range);
+}
+
+.price-range::-ms-fill-lower {
+  background: var(--bg-default-range);
+  height: var(--height-input-range);
+}
+
+.price-range::-ms-fill-upper {
+  background-color: var(--bg-fill-range);
+  height: var(--height-input-range);
+}
+
+.price-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 50%;
+  background: var(--bg-thumb);
+  cursor: pointer;
+  border: 4px solid var(--border-color-thumb);
+  height: 30px;
+  width: 30px;
+}
+
+.price-range::-moz-range-thumb {
+  height: 24px;
+  width: 24px;
+  border: 4px solid var(--border-color-thumb);
+  background: var(--bg-thumb);
+  cursor: pointer;
+}
+
+.price-value {
+  position: absolute;
+  top: calc(100% + 16px);
+  font-weight: 400;
+  font-size: 16px;
+  color: #121212;
+}
+
+.price-value--min {
+  left: 0;
+}
+.price-value--max {
+  left: 89%;
+}
+
+.price-separator {
+  display: inline-block;
+  position: absolute;
+  top: 2px;
+  left: -1px;
+  width: 2px;
+  height: 20px;
+  background-color: var(--bg-default-range);
+}
+
+.price-separator--middle {
+  left: calc(33% - 24px);
+  left: var(--range-separator-middle);
+}
+@media only screen and (max-width: 768.9px) {
+  .price-separator--middle {
+    left: calc(33% - 16px);
+  }
+}
+@media only screen and (max-width: 425.9px) {
+  .price-separator--middle {
+    left: 33%;
+  }
+}
+
+.price-separator--last {
+  left: calc(100% - 1px);
+}
+
+.price-tooltip {
+  --left-position-tooltip: -58px; /* Change Starting Value when add in Webflow */
+
+  pointer-events: none;
+  display: inline-block;
+  position: absolute;
+  top: -48px;
+  left: var(--left-position-tooltip);
+  white-space: nowrap;
+  font-family: inherit;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.6s ease,
+    opacity 0.6s ease;
+}
+
+.price-calculator__wrapper:hover .price-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Tooltip */
+.price-tooltip__pointer {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-12px) rotate(45deg);
+  background-color: #fff;
+  border-radius: 2px;
+  width: 16px;
+  height: 16px;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
+  z-index: 0;
+}
+
+.price-tooltip__text {
+  position: relative;
+  display: inline-block;
+  padding: 8px;
+  background-color: #fff;
+  z-index: 1;
+}

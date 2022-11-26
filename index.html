@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css">
+    <title>Range Slider</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        section {
+            margin: 0;
+            padding: 64px;
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1060px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+        <div class="container">
+            <div class="nav"></div>
+            <div class="title"></div>
+            <div class="price-calculator">
+                <div class="price-calculator__wrapper">
+                    <input class="price-range" type="range" min="5" max="100" value="5" step="1" />
+                    <span class="price-value price-value--min">5K</span>
+                    <span class="price-value price-value--max">200K+</span>
+                    <span class="price-tooltip">
+                        <span class="price-tooltip__text">5,000 visitors/month</span>
+                        <span class="price-tooltip__pointer"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>
