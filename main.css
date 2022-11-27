@@ -93,13 +93,21 @@
 }
 
 /* Plan Name */
+.price-plans {
+  pointer-events: none;
+}
 .price-plan {
   --left-position-pro: 0;
   --right-position-business: 0;
 
   position: absolute;
   top: 24px;
-  pointer-events: none;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 26px;
+  color: #6c6a60;
 }
 
 .price-plan--pro {
@@ -110,35 +118,20 @@
   right: var(--right-position-business);
 }
 
-
-/* Price Value */
-.price-value {
-  position: absolute;
-  top: calc(100% + 16px);
-  font-weight: 400;
-  font-size: 16px;
-  color: #121212;
-}
-
-.price-value--min {
-  left: 0;
-}
-.price-value--max {
-  left: 89%;
-}
-
 /* Tooltip */
 .price-tooltip {
-  --left-position-tooltip: -58px; /* Change Starting Value when add in Webflow */
+  --left-position-tooltip: -79px; /* Change Starting Value when add in Webflow */
 
   pointer-events: none;
   display: inline-block;
   position: absolute;
-  top: -48px;
+  top: -68px;
   left: var(--left-position-tooltip);
   white-space: nowrap;
+  border-radius: 5px;
   font-family: inherit;
-  box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
+  box-shadow: 0px 15px 35px rgba(50, 50, 93, 0.1),
+    0px 5px 15px rgba(0, 0, 0, 0.07);
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.6s ease, opacity 0.6s ease;
@@ -155,18 +148,24 @@
   left: 50%;
   transform: translateX(-50%) translateY(-12px) rotate(45deg);
   background-color: #fff;
-  border-radius: 2px;
   width: 16px;
   height: 16px;
-  box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
+  border-radius: 5px;
   z-index: 0;
 }
 
 .price-tooltip__text {
   position: relative;
   display: inline-block;
-  padding: 8px;
+  padding: 16px;
+  border-radius: 30px;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 26px;
   background-color: #fff;
+  color: #080807;
   z-index: 1;
 }
 /* Grid Lines */
@@ -196,4 +195,33 @@
 
 .grid-line--last {
   left: var(--position-line-last);
+}
+
+/* Price Text */
+.price-text {
+  margin-top: 64px;
+  margin-right: 12px;
+  pointer-events: none;
+  white-space: nowrap;
+  text-align: end;
+}
+
+.price-text .price-value {
+  display: inline-block;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 32px;
+  color: #3d4fe0;
+}
+
+.price-text span:last-child {
+  display: inline-block;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 26px;
+  color: #222222;
 }

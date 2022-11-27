@@ -9,17 +9,34 @@ function priceCalculator() {
   const range = wrapper.querySelector(".price-range");
 
   gridLines();
+  price(range.value, range.min);
+
   range.addEventListener("input", calculate);
   window.addEventListener("resize", gridLines);
 
   function calculate() {
     fillRange(this, this.min, this.max, this.value);
     tooltip(this.min, this.max, this.value);
-    hideEdges(this.min, this.max, this.value);
-    price();
+    price(this.value, this.min);
   }
 
-  function price() {}
+  function price(val, min) {
+    const rangeValue = val - min; // Start range from 0 
+    let price = 0;
+    const renderPrice = () => {
+      const text = document.querySelector(".price-value");
+      text.textContent = "$" + price;
+    };
+
+    if (val < 33) {
+      price = rangeValue * 10; // Add 10 for every 1k views in Pro Plan
+    } else {
+      const proPrice = 270;
+      price = (rangeValue - 27) * 5 + proPrice; // Add 5 for every 1k views in Business Plan
+    }
+
+    renderPrice();
+  }
 
   function fillRange(el, min, max, val) {
     const style = getComputedStyle(el);
@@ -27,7 +44,18 @@ function priceCalculator() {
     const fillColor = style.getPropertyValue("--bg-fill-range");
     const move = ((val - min) / (max - min)) * 99;
 
+    hideRangeEdges();
     el.style.background = `linear-gradient(to right, ${fillColor} 0%, ${fillColor} ${move}%, ${defaultColor} ${move}%, ${defaultColor} 100%)`;
+
+    function hideRangeEdges() {
+      if (val !== min || val !== max) {
+        wrapper.style.setProperty("--display-right-edge", "inline-block");
+        wrapper.style.setProperty("--display-left-edge", "inline-block");
+      }
+      if (val === min) wrapper.style.setProperty("--display-left-edge", "none");
+      if (val === max)
+        wrapper.style.setProperty("--display-right-edge", "none");
+    }
   }
 
   function tooltip(min, max, val) {
@@ -101,14 +129,5 @@ function priceCalculator() {
       "--right-position-business",
       positionBusPlan + "px"
     );
-  }
-
-  function hideEdges(min, max, val) {
-    if (val !== min || val !== max) {
-      wrapper.style.setProperty("--display-right-edge", "inline-block");
-      wrapper.style.setProperty("--display-left-edge", "inline-block");
-    }
-    if (val === min) wrapper.style.setProperty("--display-left-edge", "none");
-    if (val === max) wrapper.style.setProperty("--display-right-edge", "none");
   }
 }
